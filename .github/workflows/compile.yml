@@ -16,7 +16,7 @@ jobs:
 #          path: ${{ github.workspace }}/libraries/CRC32
       - uses: arduino/compile-sketches@v1
         with:
-          fqbn: esp32:esp32:esp32s3:PSRAM=opi
+          fqbn: esp32:esp32:XIAO_ESP32S3:PSRAM=opi
           sketch-paths: ./fugleramme-esp32
           libraries: |
             - source-url: https://github.com/Seeed-Studio/Seeed_GFX.git
