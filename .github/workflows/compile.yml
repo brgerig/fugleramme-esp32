@@ -5,7 +5,8 @@ jobs:
   compile-sketches:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: Seeed-Studio/Seeed_GFX
           path: ${{ github.workspace }}/libraries/Seeed_GFX
