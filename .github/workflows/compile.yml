@@ -6,18 +6,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
-        with:
-          repository: Seeed-Studio/Seeed_GFX
-          path: ${{ github.workspace }}/libraries/Seeed_GFX
-      - uses: actions/checkout@v4
-        with:
-          repository: bakercp/CRC32
-          path: ${{ github.workspace }}/libraries/CRC32
+#      - uses: actions/checkout@v4
+#        with:
+#          repository: Seeed-Studio/Seeed_GFX
+#          path: ${{ github.workspace }}/libraries/Seeed_GFX
+#      - uses: actions/checkout@v4
+#        with:
+#          repository: bakercp/CRC32
+#          path: ${{ github.workspace }}/libraries/CRC32
       - uses: arduino/compile-sketches@v1
         with:
           fqbn: esp32:esp32:esp32s3:PSRAM=opi
           sketch-paths: ./fugleramme-esp32
           libraries: |
-            - source-path: ${{ github.workspace }}/libraries/Seeed_GFX
-            - source-path: ${{ github.workspace }}/libraries/CRC32
+            - source-url: https://github.com/Seeed-Studio/Seeed_GFX.git
+              source-path: ${{ github.workspace }}/libraries/Seeed_GFX
+            - source-url: https://github.com/bakercp/CRC32.git
+              source-path: ${{ github.workspace }}/libraries/CRC32
+            - name: WiFiManager
