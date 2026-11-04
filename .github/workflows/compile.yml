@@ -13,7 +13,7 @@ jobs:
       - name: Compile Sketch for EE02
         uses: arduino/compile-sketches@v1
         with:
-          fqbn: esp32:esp32:XIAO_ESP32S3:PSRAM=opi
+          fqbn: esp32:esp32:XIAO_ESP32S3_PLUS:PSRAM=opi
           sketch-paths: ./fugleramme-esp32
           cli-compile-flags: |
             - "--build-property"
