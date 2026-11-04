@@ -2,19 +2,13 @@ on:
   - push
   - pull_request
 jobs:
-  compile-sketches:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-#      - uses: actions/checkout@v4
-#        with:
-#          repository: Seeed-Studio/Seeed_GFX
-#          path: ${{ github.workspace }}/libraries/Seeed_GFX
-#      - uses: actions/checkout@v4
-#        with:
-#          repository: bakercp/CRC32
-#          path: ${{ github.workspace }}/libraries/CRC32
-      - uses: arduino/compile-sketches@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Compile Sketches
+        uses: arduino/compile-sketches@v1
         with:
           fqbn: esp32:esp32:XIAO_ESP32S3:PSRAM=opi
           sketch-paths: ./fugleramme-esp32
@@ -22,3 +16,13 @@ jobs:
             - source-url: https://github.com/Seeed-Studio/Seeed_GFX.git
             - source-url: https://github.com/bakercp/CRC32.git
             - name: WiFiManager
+      - name: Upload Compiled Binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiled-binaries
+          path: |
+            **/build/**/*.bin
+            **/build/**/*.hex
+            **/build/**/*.elf
+          if-no-files-found: error
+  
