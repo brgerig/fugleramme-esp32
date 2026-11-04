@@ -5,11 +5,15 @@ jobs:
   compile-sketches:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout primary repository
       - uses: actions/checkout@v4
+
+      - name: Checkout Seeed_GFX library
       - uses: actions/checkout@v4
         with:
           repository: Seeed-Studio/Seeed_GFX
           path: ${{ github.workspace }}/libraries/Seeed_GFX
+          
       - uses: arduino/compile-sketches@v1
         with:
           fqbn: esp32:esp32:esp32s3:PSRAM=opi
