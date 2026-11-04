@@ -10,10 +10,13 @@ jobs:
         with:
           repository: Seeed-Studio/Seeed_GFX
           path: ${{ github.workspace }}/libraries/Seeed_GFX
+      - uses: actionz/checkout@v4
+        with:
+          repository: bakercp/CRC32
+          path: ${{ github.workspace }}/libraries/CRC32
       - uses: arduino/compile-sketches@v1
         with:
           fqbn: esp32:esp32:esp32s3:PSRAM=opi
           sketch-paths: ./fugleramme-esp32
           libraries: |
-            - name: Arduino_CRC32
-            - source-path: ${{ github.workspace }}/libraries/Seeed_GFX
+            - source-path: ${{ github.workspace }}/libraries/
