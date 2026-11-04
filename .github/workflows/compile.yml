@@ -12,7 +12,7 @@ jobs:
       - uses: arduino/compile-sketches@v1
         with:
           fqbn: esp32:esp32:esp32s3:PSRAM=opi
-          sketch-paths: .
+          sketch-paths: ./fugleramme-esp32
           libraries: |
             - name: Arduino_CRC32
             - source-path: ${{ github.workspace }}/libraries/Seeed_GFX
