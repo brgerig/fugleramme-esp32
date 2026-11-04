@@ -15,4 +15,4 @@ jobs:
           sketch-paths: .
           libraries: |
             - name: Arduino_CRC32
-            - source-path: ${{ github.workspace }}/libraries/Seeed_GFX2
+            - source-path: ${{ github.workspace }}/libraries/Seeed_GFX
