@@ -20,7 +20,5 @@ jobs:
           sketch-paths: ./fugleramme-esp32
           libraries: |
             - source-url: https://github.com/Seeed-Studio/Seeed_GFX.git
-              source-path: ${{ github.workspace }}/libraries/Seeed_GFX
             - source-url: https://github.com/bakercp/CRC32.git
-              source-path: ${{ github.workspace }}/libraries/CRC32
             - name: WiFiManager
