@@ -12,6 +12,8 @@ jobs:
         with:
           fqbn: esp32:esp32:XIAO_ESP32S3:PSRAM=opi
           sketch-paths: ./fugleramme-esp32
+          cli-compile-flags: |
+            - --output-dir=${{ github.workspace }}/build_output
           libraries: |
             - source-url: https://github.com/Seeed-Studio/Seeed_GFX.git
             - source-url: https://github.com/bakercp/CRC32.git
@@ -21,8 +23,6 @@ jobs:
         with:
           name: compiled-binaries
           path: |
-            **/build/**/*.bin
-            **/build/**/*.hex
-            **/build/**/*.elf
+            **/build_output/**/*.bin
           if-no-files-found: error
   
