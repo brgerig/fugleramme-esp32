@@ -1,8 +1,6 @@
 on:
   - push
   - pull_request
-permissions:
-  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,6 +23,31 @@ jobs:
             - source-url: https://github.com/Seeed-Studio/Seeed_GFX.git
             - source-url: https://github.com/bakercp/CRC32.git
             - name: WiFiManager
+      - name: Upload Compiled Binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.board }}
+          path: build_output/${{ matrix.board }}/
+          if-no-files-found: error
+  commit:
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Download all board outputs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: BOARD_*
+          path: build_output
+          merge-multiple: false
+
       - name: Commit and push changes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -43,11 +66,4 @@ jobs:
           else
             echo "No changes detected in the workspace. Skipping commit."
           fi
-  #    - name: Upload Compiled Binaries
-  #      uses: actions/upload-artifact@v4
-  #      with:
-  #        name: compiled-binaries
-  #        path: |
-  #          **/build_output/**/*.bin
-  #        if-no-files-found: error
   
