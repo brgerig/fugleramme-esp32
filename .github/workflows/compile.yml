@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        board:["EE02", "EE04"]
+        board: [BOARD_EE02, BOARD_EE04]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
