@@ -19,4 +19,5 @@ jobs:
           fqbn: esp32:esp32:esp32s3:PSRAM=opi
           sketch-paths: ./fugleramme-esp32
           libraries: |
-            - source-path: ${{ github.workspace }}/libraries/
+            - source-path: ${{ github.workspace }}/libraries/Seeed_GFX
+            - source-path: ${{ github.workspace }}/libraries/CRC32
