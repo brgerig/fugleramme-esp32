@@ -10,3 +10,6 @@ jobs:
         with:
           fqbn: esp32:esp32:esp32s3:PSRAM=opi
           sketch-paths: .
+          libraries: |
+            Arduino_CRC32
+            - source-url: https://github.com/Seeed-Studio/Seeed_GFX.git
