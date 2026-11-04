@@ -7,8 +7,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          repository: Seeed-Studio/Seeed_GFX2
-          path: ${{ github.workspace }}/libraries/Seeed_GFX2
+          repository: Seeed-Studio/Seeed_GFX
+          path: ${{ github.workspace }}/libraries/Seeed_GFX
       - uses: arduino/compile-sketches@v1
         with:
           fqbn: esp32:esp32:esp32s3:PSRAM=opi
