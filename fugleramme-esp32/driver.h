@@ -2,7 +2,7 @@
 #define BOARD_EE04 2
 
 #ifndef BOARD
-  #define BOARD EE02
+  #define BOARD BOARD_EE02
 #endif
 
 #if BOARD == BOARD_EE02
