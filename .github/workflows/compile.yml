@@ -23,11 +23,29 @@ jobs:
             - source-url: https://github.com/Seeed-Studio/Seeed_GFX.git
             - source-url: https://github.com/bakercp/CRC32.git
             - name: WiFiManager
-      - name: Upload Compiled Binaries
-        uses: actions/upload-artifact@v4
-        with:
-          name: compiled-binaries
-          path: |
-            **/build_output/**/*.bin
-          if-no-files-found: error
+      - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Configure the Git author using the standard GitHub Actions bot identity
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          git add build_output/
+          
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "chore: automated build update [skip ci]"
+            
+            # 4. Push changes back to the branch that triggered the workflow
+            git push origin HEAD:${{ github.ref_name }}
+          else
+            echo "No changes detected in the workspace. Skipping commit."
+          fi
+  #    - name: Upload Compiled Binaries
+  #      uses: actions/upload-artifact@v4
+  #      with:
+  #        name: compiled-binaries
+  #        path: |
+  #          **/build_output/**/*.bin
+  #        if-no-files-found: error
   
