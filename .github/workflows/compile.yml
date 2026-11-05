@@ -1,3 +1,5 @@
+name: Build and Compile Sketch
+
 on:
   - push
   - pull_request
