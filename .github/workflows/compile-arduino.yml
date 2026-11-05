@@ -64,7 +64,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           pattern: BOARD_*
-          path: build_output
+          path: xiao-arduino/build_output/
           merge-multiple: false
 
       - name: Commit and push changes
@@ -75,7 +75,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          git add build_output/
+          git add xiao-arduino/build_output/
           
           if ! git diff-index --quiet HEAD; then
             git commit -m "chore: automated build update [skip ci]"
