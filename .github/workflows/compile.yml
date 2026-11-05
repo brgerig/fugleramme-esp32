@@ -13,7 +13,10 @@ jobs:
       - name: Compile Sketch for EE02
         uses: arduino/compile-sketches@v1
         with:
-          fqbn: esp32:esp32:XIAO_ESP32S3:FlashSize=16M,PSRAM=opi,PartitionScheme=fatflash
+          platforms: |
+            - name: esp32:esp32
+              source-url: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+          fqbn: esp32:esp32:XIAO_ESP32S3:PSRAM=opi
           sketch-paths: ./fugleramme-esp32
           cli-compile-flags: |
             - "--build-property"
